@@ -1,0 +1,31 @@
+/* WebGhost — tokens. Neutro, sem tinta de cor no fundo; um único acento, raro. */
+:root {
+  --c-0: #050505; /* fundo */
+  --c-1: #080808;
+  --c-2: #0d0d0d; /* superfícies */
+  --c-3: #151515; /* grid / linhas discretas */
+  --c-4: #1e1e1e;
+
+  --ink: #f2f0ec;   /* branco quente */
+  --ink-2: #b9b5ae; /* texto secundário */
+  --ink-3: #85817b; /* micro texto (contraste AA sobre --c-0) */
+  --ink-4: #3a3836; /* estados inativos */
+
+  --line: #1a1a1a;
+  --line-2: #2a2a2a;
+
+  /* prata quente: hover do CTA, etapa ativa, sinais de soma. Só isso. */
+  --accent: #c9bfae;
+
+  --f-sans: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --f-serif: 'Instrument Serif', 'Times New Roman', Times, serif;
+
+  --gutter: clamp(16px, 2.2vw, 36px);
+  --nav-h: 64px;
+  --r: 2px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+
+  color-scheme: dark;
+}

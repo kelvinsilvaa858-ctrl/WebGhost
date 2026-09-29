@@ -1,0 +1,85 @@
+/* ——— Hero ———
+   Apresentação à esquerda, triângulo no centro (canvas, z 1), serviços à direita, ações embaixo. */
+.hero {
+  position: relative; z-index: 2;
+  height: 100svh; min-height: 560px;
+  overflow: hidden; background: transparent;
+  touch-action: pan-y; /* no celular: arrastar na horizontal gira, na vertical rola a página */
+  user-select: none; -webkit-user-select: none;
+  /* difference: a frase se inverte onde cruza a luz do triângulo e continua legível */
+  mix-blend-mode: difference;
+}
+.hero__ctas {
+  position: absolute; left: 0; right: 0; top: 70%;
+  display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding: 0 var(--gutter);
+}
+
+.hero__statement {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+  padding: 0 var(--gutter);
+  font-size: clamp(1.9rem, 4.6vw, 4.8rem); font-weight: 500; line-height: 1.04; letter-spacing: -.035em;
+}
+
+/* apresentação */
+.hero__intro {
+  position: absolute; left: calc(var(--gutter) + 5vw); top: 29%;
+  width: min(34rem, 30vw);
+}
+.hero__title { font-weight: 300; }
+.hero__kicker {
+  display: block; margin-bottom: 1.1rem;
+  font-size: .66rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-3);
+  white-space: nowrap; /* uma linha só no computador */
+}
+.hero__title .line { display: block; font-size: clamp(2rem, 2.9vw, 3.4rem); line-height: 1.06; letter-spacing: -.03em; }
+.hero__t1 { font-weight: 300; }
+.hero__t2 { font-weight: 700; }
+.hero__body { position: relative; margin-top: 1.8rem; padding-left: 1.4rem; }
+.hero__rule { position: absolute; left: 0; top: .2rem; bottom: .2rem; width: 1px; background: var(--line-2); transform-origin: top; }
+.hero__lede { font-size: clamp(.95rem, 1.05vw, 1.0625rem); line-height: 1.6; color: var(--ink-2); max-width: 36ch; }
+
+/* serviços, à direita da peça */
+.hero__services {
+  position: absolute; right: calc(var(--gutter) + 4vw); top: 29%;
+  width: min(20rem, 21vw); padding-left: 2.2rem; border-left: 1px solid var(--line-2);
+  display: flex; flex-direction: column; gap: 2.1rem;
+}
+.hero__svc a { display: grid; grid-template-columns: 2.4rem 1fr; gap: 1.1rem; align-items: start; color: inherit; }
+.hero__svc-icon svg {
+  width: 1.7rem; height: 1.7rem; fill: none; stroke: var(--ink); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .5s var(--ease-out);
+}
+.hero__svc-text strong { display: block; font-size: .95rem; font-weight: 600; color: var(--ink); margin-bottom: .35rem; }
+.hero__svc-text span { display: block; font-size: .8125rem; line-height: 1.5; color: var(--ink-2); }
+.hero__svc a:hover .hero__svc-icon svg { transform: translateY(-2px); }
+.hero__svc a:hover strong { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+
+/* ações */
+.hero__ctas { gap: 2rem; }
+.hero__arrow { display: inline-block; margin-left: .55rem; transition: transform .45s var(--ease-out); }
+.hero__ctas a:hover .hero__arrow { transform: translateX(4px); }
+.hero__link { font-size: .9375rem; color: var(--ink); }
+
+/* telas médias: a peça ocupa o centro — os serviços saem e a apresentação encolhe */
+@media (max-width: 1199px) and (min-width: 900px) {
+  .hero__services { display: none; }
+  .hero__intro { left: var(--gutter); width: 32vw; }
+  .hero__kicker { white-space: normal; }
+  .hero__title .line { font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
+}
+
+@media (max-width: 899px) {
+  .hero__intro { left: var(--gutter); right: var(--gutter); width: auto; top: auto; bottom: calc(14vh + 8.5rem + env(safe-area-inset-bottom, 0px)); }
+  .hero__kicker { font-size: .6rem; letter-spacing: .16em; margin-bottom: .7rem; white-space: normal; }
+  .hero__title .line { font-size: clamp(1.9rem, 8.4vw, 2.5rem); }
+  .hero__body { margin-top: 1rem; padding-left: 1rem; }
+  .hero__lede { font-size: .9375rem; }
+  .hero__services { display: none; }
+  .hero__ctas { top: auto; bottom: calc(5vh + env(safe-area-inset-bottom, 0px)); flex-direction: column; gap: 1.1rem; }
+  .hero__ctas .btn { width: min(100%, 320px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__statement { display: none; }
+}

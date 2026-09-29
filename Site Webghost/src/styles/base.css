@@ -1,0 +1,64 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+html { scrollbar-gutter: stable; /* liberar o scroll no fim do carregamento não muda a largura */ background: var(--c-0); scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+html.is-loading { overflow: hidden; }
+/* o Lenis pausado usa overflow: clip, que ignora o scrollbar-gutter e faz a largura pular ao liberar */
+html.lenis.lenis-stopped:not(.lenis-autoToggle) { overflow: hidden; }
+body {
+  background: var(--c-0);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+img, svg, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+ol, ul { list-style: none; }
+::selection { background: var(--ink); color: var(--c-0); }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 4px; }
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor, html.has-cursor * { cursor: none !important; }
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip {
+  position: fixed; top: 8px; left: 8px; z-index: 300; padding: .75rem 1rem;
+  background: var(--ink); color: var(--c-0); font-size: .875rem; transform: translateY(-200%);
+}
+.skip:focus { transform: none; }
+
+/* tipografia utilitária */
+.micro { font-size: .75rem; line-height: 1.45; letter-spacing: .01em; color: var(--ink-3); }
+.caps { text-transform: uppercase; letter-spacing: .09em; font-size: .72rem; color: var(--ink-2); }
+.tnum { font-variant-numeric: tabular-nums; }
+.h-sec { font-size: .8125rem; font-weight: 500; color: var(--ink-2); letter-spacing: .01em; }
+
+/* palavras mascaradas para reveals */
+.line { display: block; }
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.w__i { display: inline-block; will-change: transform; }
+
+/* canvas 3D: fixo e opaco, atrás de todo o conteúdo (z 2) */
+.scene { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+.scene canvas { width: 100% !important; height: 100% !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
